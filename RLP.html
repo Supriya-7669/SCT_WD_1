@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Navigation Menu</title>
+  <style>
+    /* CSS Custom Properties with attractive colors */
+    :root {
+      --nav-bg-default: #ffffff;
+      --nav-bg-scrolled: #a5d8ff; /* soft sky-blue */
+      --nav-text-default: #26a69a; /* lux green */
+      --nav-text-scrolled: #f48fb1; /* baby pink */
+      --nav-hover-bg: #ff8a80; /* light red */
+      --nav-hover-text: #ffffff; /* white */
+      --nav-border-radius: 0.75rem;
+      --transition-duration: 0.3s;
+      --font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --max-width: 1200px;
+      --body-text-color: #6b7280; /* neutral gray for body text */
+      --headings-color: #111827; /* dark for headings */
+    }
+
+    /* Import Poppins font from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--nav-bg-default);
+      color: var(--body-text-color);
+      min-height: 200vh; /* enable scrolling */
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    /* Container for nav content */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    /* Navigation bar fixed at top */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--nav-bg-default);
+      color: var(--nav-text-default);
+      box-shadow: 0 2px 5px rgba(38, 166, 154, 0.15);
+      transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+      z-index: 1000;
+    }
+    nav.scrolled {
+      background-color: var(--nav-bg-scrolled);
+      color: var(--nav-text-scrolled);
+      box-shadow: 0 4px 12px rgba(244, 143, 177, 0.5);
+    }
+
+    /* Logo */
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+      cursor: default;
+      color: var(--nav-text-default);
+      transition: color var(--transition-duration) ease;
+    }
+    nav.scrolled .logo {
+      color: var(--nav-text-scrolled);
+    }
+
+    /* Navigation links container */
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* Each nav link */
+    ul.nav-links li a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      color: inherit;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--nav-border-radius);
+      transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease, transform var(--transition-duration) ease;
+      display: inline-block;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    /* Hover effect on links */
+    ul.nav-links li a:hover,
+    ul.nav-links li a:focus-visible {
+      background-color: var(--nav-hover-bg);
+      color: var(--nav-hover-text);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* When nav is scrolled, keep hover consistent */
+    nav.scrolled ul.nav-links li a:hover,
+    nav.scrolled ul.nav-links li a:focus-visible {
+      background-color: var(--nav-hover-bg);
+      color: var(--nav-hover-text);
+    }
+
+    /* Spacer div below nav to prevent content hidden behind fixed nav */
+    .nav-spacer {
+      height: 64px;
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar" aria-label="Primary Navigation">
+    <div class="container">
+      <div class="logo" aria-label="Site Logo">BrightSite</div>
+      <ul class="nav-links">
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#features" tabindex="0">Features</a></li>
+        <li><a href="#pricing" tabindex="0">Pricing</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="nav-spacer"></div>
+
+  <main>
+    <section id="home" style="padding: 4rem 1.5rem;">
+      <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem; color: var(--headings-color);">Welcome to BrightSite</h1>
+      <p style="max-width: 700px; line-height: 1.6; font-size: 1.125rem; color: var(--body-text-color);">
+        A bright and modern website with an interactive navigation menu that changes color on scroll and offers smooth hover styles. Scroll down to see the effect.
+      </p>
+    </section>
+    <section id="features" style="padding: 4rem 1.5rem; background: #f9fafb; margin-top: 3rem;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--headings-color);">Features</h2>
+      <ul style="list-style-type: disc; padding-left: 1.5rem; max-width: 700px; line-height: 1.6; color: #4b5563;">
+        <li>Sticky, fixed top navigation menu</li>
+        <li>Bright, attractive background color changes on scroll</li>
+        <li>Smooth hover scaling and color changes on navigation items</li>
+        <li>Responsive layout and accessible markup</li>
+      </ul>
+    </section>
+    <section id="pricing" style="padding: 4rem 1.5rem;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--headings-color);">Pricing</h2>
+      <p style="max-width: 700px; font-size: 1.125rem; color: #4b5563;">
+        We offer flexible pricing plans to suit your needs. Contact us for more details.
+      </p>
+    </section>
+    <section id="about" style="padding: 4rem 1.5rem; background: #f9fafb; margin-top: 3rem;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--headings-color);">About Us</h2>
+      <p style="max-width: 700px; font-size: 1.125rem; color: #4b5563;">
+        BrightSite is a demo site showcasing an interactive navigation menu with bright, attractive colors and smooth animations using only HTML, CSS, and JavaScript.
+      </p>
+    </section>
+    <section id="contact" style="padding: 4rem 1.5rem;">
+      <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--headings-color);">Contact</h2>
+      <p style="max-width: 700px; font-size: 1.125rem; color: #4b5563;">
+        Get in touch with us through the contact form or email for any inquiries.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (function() {
+      const navbar = document.getElementById('navbar');
+      const scrollThreshold = 50;
+
+      function onScroll() {
+        if (window.scrollY > scrollThreshold) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
